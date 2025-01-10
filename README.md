@@ -400,7 +400,7 @@ In this assignment, you are tasked with continuing the development of the cinema
 implement two endpoints in the `schemas/movies.py` and `routes/movies.py` files. The rest of the application, including
 database models and utility functions, has already been provided.
 
-### Task 1: Implement Movies List Endpoint
+### 1: Implement Movies List Endpoint
 
 Your task is to implement an endpoint in the `routes/movies.py` file that retrieves a **paginated list of movies** from
 the database. The required response structure is detailed below.
@@ -467,7 +467,7 @@ This task requires you to implement both the endpoint logic in `routes/movies.py
 `schemas/movies.py`. Ensure that your implementation handles all edge cases, such as invalid query parameters or empty
 results.
 
-### Task 2: Implement Movie Creation Endpoint
+### 2: Implement Movie Creation Endpoint
 
 Your task is to implement an endpoint in the `routes/movies.py` file that allows the creation of a new movie in the database. The required request and response structures are detailed below.
 
@@ -655,7 +655,7 @@ The endpoint returns the created movie's details in the following format:
    }
    ```
 
-### Task 3: Implement Movie Details Endpoint
+### 3: Implement Movie Details Endpoint
 
 Your task is to implement an endpoint in the `routes/movies.py` file that retrieves detailed information about a specific movie by its unique ID. The required response structure is detailed below.
 
@@ -799,7 +799,7 @@ The endpoint should return the details of the movie in the following format:
    }
    ```
 
-### Task 4: Implement Movie Deletion Endpoint
+### 4: Implement Movie Deletion Endpoint
 
 Your task is to implement an endpoint in the `routes/movies.py` file that deletes a specific movie by its unique ID. The required details for this endpoint are provided below.
 
@@ -861,7 +861,7 @@ The endpoint does not return a response body on success. Instead, it responds wi
    }
    ```
 
-### Task 5: Implement Movie Update Endpoint
+### 5: Implement Movie Update Endpoint
 
 Your task is to implement an endpoint in the `routes/movies.py` file that updates the details of a specific movie by its unique ID. The details for this endpoint are provided below.
 
