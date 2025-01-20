@@ -360,7 +360,7 @@ Represents a country associated with a movie (e.g., production country).
 - **Table Name**: `countries`
 - **Fields**:
     - `id` (Primary Key): Unique identifier for each country.
-    - `code`: ISO 3166-1 alpha-3 country code (e.g., USA, FRA).
+    - `code`: ISO 3166-1 alpha-2 country code (e.g., US, FR).
     - `name`: Full name of the country.
 
 - **Relationships**:
@@ -491,7 +491,7 @@ The endpoint accepts a JSON object with the following fields:
   "status": "string (Released | Post Production | In Production)",
   "budget": "float (>= 0)",
   "revenue": "float (>= 0)",
-  "country": "string (ISO 3166-1 alpha-3 code)",
+  "country": "string (ISO 3166-1 alpha-2 code)",
   "genres": ["string"],
   "actors": ["string"],
   "languages": ["string"]
@@ -581,7 +581,7 @@ The endpoint returns the created movie's details in the following format:
      "status": "Released",
      "budget": 160000000.00,
      "revenue": 829895144.00,
-     "country": "USA",
+     "country": "US",
      "genres": ["Action", "Sci-Fi"],
      "actors": ["Leonardo DiCaprio", "Joseph Gordon-Levitt"],
      "languages": ["English", "Japanese"]
@@ -601,7 +601,7 @@ The endpoint returns the created movie's details in the following format:
      "revenue": 829895144.00,
      "country": {
        "id": 1,
-       "code": "USA",
+       "code": "US",
        "name": "United States"
      },
      "genres": [
@@ -751,7 +751,7 @@ The endpoint should return the details of the movie in the following format:
      "revenue": 829895144.00,
      "country": {
        "id": 1,
-       "code": "USA",
+       "code": "US",
        "name": "United States"
      },
      "genres": [
