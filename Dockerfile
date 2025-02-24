@@ -34,6 +34,9 @@ WORKDIR /usr/src/poetry
 RUN poetry lock
 RUN poetry install --no-root --only main
 
+# Selecting a working directory
+WORKDIR /usr/src/fastapi
+
 # Copy the source code
 COPY ./src .
 

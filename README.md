@@ -1,5 +1,23 @@
 # Movie Theater API Project
 
+**Table of Contents**  
+- [Project Overview](#project-overview)  
+- [Project Structure Overview](#project-structure-overview)  
+- [Services Overview](#services-overview)  
+- [How to Run the Project](#how-to-run-the-project)  
+- [Run Project with PyCharm](#run-project-with-pycharm)  
+- [Models and Entities Overview](#models-and-entities-overview)  
+- [Task Description: Extending the Cinema Application](#task-description-extending-the-cinema-application)  
+  - [1: Implement Movies List Endpoint](#1-implement-movies-list-endpoint)  
+  - [2: Implement Movie Creation Endpoint](#2-implement-movie-creation-endpoint)  
+  - [3: Implement Movie Details Endpoint](#3-implement-movie-details-endpoint)  
+  - [4: Implement Movie Deletion Endpoint](#4-implement-movie-deletion-endpoint)  
+  - [5: Implement Movie Update Endpoint](#5-implement-movie-update-endpoint)  
+- [Tips and Guidance](#tips-and-guidance)
+
+---
+
+## Project Overview
 Welcome to the **Movie Theater API** project! This educational assignment is designed to help you develop and refine
 your skills in creating robust web applications using FastAPI, SQLAlchemy, and Docker. Here's what the project offers:
 
@@ -136,14 +154,14 @@ you can use it effectively:
 
 ```python
 from fastapi import Depends, APIRouter
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
 from database import get_db  # Import the get_db generator
 
 router = APIRouter()
 
 
 @router.get("/example")
-def example_route(db: Session = Depends(get_db)):
+async def example_route(db: AsyncSession = Depends(get_db)):
 # Use the db session here to interact with the database
 ```
 
@@ -299,6 +317,27 @@ After all services are running, you can test the API by accessing the OpenAPI do
 http://localhost:8000/docs
 ```
 
+### Run project with PyCharm
+
+1. Mark the `src` directory as root
+    ![mark src directory as root](./assets/images/1_mark_directory_as_source_root.png)
+2. Close all open code tabs
+3. Restart `PyCharm`
+4. Create a new Run Configuration for the `FastAPI` project
+    ![create new fastapi run configuration](./assets/images/2_create_new_run_config.png)
+5. Add the required environment variables to the Run Configuration.
+6. Start the local Docker Compose services:
+    ```bash
+    docker-compose -f docker-compose-local.yml up --build -d
+    ```
+7. Wait for the initial database seeding to finish (this may take a moment the first time).
+    ![seed db](./assets/images/4_seed_db.png)  
+8. Run the project via `PyCharm` and use breakpoints for debugging
+9. If you need to apply database migrations manually, run:
+    ```bash
+    docker-compose -f docker-compose-local.yml up --build migrator
+    ```
+
 ### Models and Entities Overview
 
 The project defines the following entities and relationships using SQLAlchemy. Each entity represents a table in the
@@ -360,7 +399,7 @@ Represents a country associated with a movie (e.g., production country).
 - **Table Name**: `countries`
 - **Fields**:
     - `id` (Primary Key): Unique identifier for each country.
-    - `code`: ISO 3166-1 alpha-2 country code (e.g., US, FR).
+    - `code`: ISO 3166-1 alpha-3 country code (e.g., USA, FRA).
     - `name`: Full name of the country.
 
 - **Relationships**:
@@ -491,7 +530,7 @@ The endpoint accepts a JSON object with the following fields:
   "status": "string (Released | Post Production | In Production)",
   "budget": "float (>= 0)",
   "revenue": "float (>= 0)",
-  "country": "string (ISO 3166-1 alpha-2 code)",
+  "country": "string (ISO 3166-1 alpha-3 code)",
   "genres": ["string"],
   "actors": ["string"],
   "languages": ["string"]
@@ -581,7 +620,7 @@ The endpoint returns the created movie's details in the following format:
      "status": "Released",
      "budget": 160000000.00,
      "revenue": 829895144.00,
-     "country": "US",
+     "country": "USA",
      "genres": ["Action", "Sci-Fi"],
      "actors": ["Leonardo DiCaprio", "Joseph Gordon-Levitt"],
      "languages": ["English", "Japanese"]
@@ -601,7 +640,7 @@ The endpoint returns the created movie's details in the following format:
      "revenue": 829895144.00,
      "country": {
        "id": 1,
-       "code": "US",
+       "code": "USA",
        "name": "United States"
      },
      "genres": [
@@ -751,7 +790,7 @@ The endpoint should return the details of the movie in the following format:
      "revenue": 829895144.00,
      "country": {
        "id": 1,
-       "code": "US",
+       "code": "USA",
        "name": "United States"
      },
      "genres": [
